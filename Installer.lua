@@ -1,3 +1,7 @@
+--
+-- This is completely based on: https://github.com/IgorTimofeev/OpenComputers/blob/master/Installer.lua
+-- Many thanks to Igor Timofeev (https://github.com/IgorTimofeev/)
+--
 
 local fs = require("filesystem")
 local component = require("component")
