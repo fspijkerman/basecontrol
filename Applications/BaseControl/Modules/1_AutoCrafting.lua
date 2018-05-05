@@ -52,8 +52,8 @@ module.onTouch = function()
   itemsLayout:setCellFitting(1,1, true, false, 6,0)
   itemsLayout:setCellFitting(1,2, true, true)
 
-
-  local infoLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Nothing selected")):setAlignment(GUI.alignment.horizontal.center,GUI.alignment.vertical.bottom))
+  local infoLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Nothing selected")):setAlignment(GUI.alignment.horizontal.center,GUI.alignment.vertical.top))
+  local totalLabel  = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Available: 0")):setAlignment(GUI.alignment.horizontal.left,GUI.alignment.vertical.bottom))
   local itemEnabled = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Enabled", false)))
   local totalCreate = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.input(1,1,1,3, 0xFFFFFF, 0x666666, 0x888888, 0xFFFFFF, 0x262626, nil, "Total")))
   local itemIdle    = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Only while Idle", false)))
@@ -110,6 +110,7 @@ module.onTouch = function()
 
     local patterns = rs.getPatterns()
     if patterns == nil then
+      log("No patterns founds!")
       return
     end
 
@@ -152,8 +153,16 @@ module.onTouch = function()
   end, math.huge)
 
   tree.onItemSelected = function()
+    activity(true)
+    local selected_item = tostring(tree.selectedItem.value)
+    infoLabel.text = selected_item
 
-    infoLabel.text = tostring(tree.selectedItem.value)
+    local mod,item,damage = selected_item:match("([^:]+):([^:]+):([^:]+)")
+    local name = mod .. ":".. item
+    local stack_item = {name=name, damage=tonumber(damage)}
+    local total = rs.getItem(stack_item, true)
+    if total == nil then total={ size=0 } end
+    totalLabel.text = "Available: " .. total.size
 
     if _G.BaseConfig[infoLabel.text] then
       itemEnabled.switch:setState(true)
@@ -175,6 +184,8 @@ module.onTouch = function()
       totalCreate.disabled = true
       itemIdle.switch.disabled = true
     end
+
+    activity(false)
   end
 
   itemEnabled.switch.onStateChanged = function(mainContainer, switch, eventData, state)
