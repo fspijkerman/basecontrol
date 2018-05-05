@@ -28,7 +28,7 @@ module.onTouch = function()
 
   local function about()
     menuContentContainer:deleteChildren()
-    local test = menuContentContainer:addChild(GUI.text(3,2,0x000000, "Version 0.1-alpha"))
+    local test = menuContentContainer:addChild(GUI.text(3,2,0x000000, "Version 0.2-alpha"))
     MineOSInterface.mainContainer:drawOnScreen()
   end
 
