@@ -69,7 +69,7 @@ module.onTouch = function()
 
           updateButton:delete()
           local dlImg = image.load(resourcesPath .. "/../Icons/Downloading.pic")
-          local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(dlImg)/2),3,dlImg))
+          local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(dlImg)/2),2,dlImg))
 
           local progress = menuContentContainer:addChild(GUI.progressBar(math.floor(menuContentContainer.width/2-50/2),math.floor(menuContentContainer.height/2)+2,50,0x3392FF,0xBBBBBB,0x555555,0,true,false))
 
