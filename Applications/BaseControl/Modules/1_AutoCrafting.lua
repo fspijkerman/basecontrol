@@ -51,7 +51,7 @@ module.onTouch = function()
   itemsLayout:setRowHeight(2, GUI.sizePolicies.percentage, 0.4)
   itemsLayout:setCellFitting(1,1, true, false, 6,0)
   itemsLayout:setCellFitting(1,2, true, true)
-
+  local itemLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "")):setAlignment(GUI.alignment.horizontal.center,GUI.alignment.vertical.top))
   local infoLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Nothing selected")):setAlignment(GUI.alignment.horizontal.center,GUI.alignment.vertical.top))
   local totalLabel  = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Available: 0")):setAlignment(GUI.alignment.horizontal.left,GUI.alignment.vertical.bottom))
   local itemEnabled = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Enabled", false)))
@@ -163,6 +163,7 @@ module.onTouch = function()
     local total = rs.getItem(stack_item, true)
     if total == nil then total={ size=0 } end
     totalLabel.text = "Available: " .. total.size
+    itemLabel.text = tree.selectedItem.key
 
     if _G.BaseConfig[infoLabel.text] then
       itemEnabled.switch:setState(true)
