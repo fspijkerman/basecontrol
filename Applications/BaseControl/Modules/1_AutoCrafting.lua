@@ -21,6 +21,7 @@ local module = {}
 module.name = "AutoCrafting"
 
 module.onTouch = function()
+  activity(true)
   window.contentContainer:deleteChildren()
   local craftPanel = window.contentContainer:addChild(GUI.panel(1,1,1,1, 0xE1E1E1))
   local mainLayout = window.contentContainer:addChild(GUI.layout(1,1, window.contentContainer.width, window.contentContainer.height, 2, 1))
@@ -98,9 +99,11 @@ module.onTouch = function()
     for i = 1, #list do
       tree:addItem(tostring(list[i]), {key=list[i], value=t[list[i]]}, offset, false)
     end
+    activity(false)
   end
 
   tree.onItemExpanded = function()
+    activity(true)
     tree.items = {}
     
     local craftable = {}
@@ -112,7 +115,7 @@ module.onTouch = function()
     
     for i,value in ipairs(patterns) do 
       local mod,item = value["name"]:match("([^:]+):([^:]+)")
-      local label = value["label"]
+      local label = value["label"] -- should be label! fix for now
       local item_name = value["name"] .. ":" .. value["damage"]
 
       -- Mark Actives with *
@@ -129,6 +132,7 @@ module.onTouch = function()
     end
 
     updateList(tree, craftable, "craftable", 1)
+    activity(false)
   end
 
   -- TODO fixme
@@ -188,14 +192,14 @@ module.onTouch = function()
       _G.BaseConfig[infoLabel.text] = {total=totalCreate.text, idle=itemIdle.switch.state}
      
       log({text="Saved Item " .. infoLabel.text .. " (" ..totalCreate.text .. ")", color = 0x008800})
-      table.toFile(resourcesPath .. "config", _G.BaseConfig)
+      table.toFile(resourcesPath .. "/../config", _G.BaseConfig)
     else
       if _G.BaseConfig[infoLabel.text] then
         log({text="Removed Item " .. infoLabel.text, color = 0x880000})
         _G.BaseConfig[infoLabel.text] = nil
         totalCreate.text = ""
         itemIdle.switch:setState(false)
-        table.toFile(resourcesPath .. "config", _G.BaseConfig)
+        table.toFile(resourcesPath .. "/../config", _G.BaseConfig)
       end
     end
 

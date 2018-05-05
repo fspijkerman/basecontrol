@@ -15,23 +15,29 @@ local MineOSInterface = require("MineOSInterface")
 local event = require("event")
 local rs = component.block_refinedstorage_cable
 
-----
+---
 
 local resourcesPath = MineOSCore.getCurrentScriptDirectory()
 local modulesPath = resourcesPath .. "Modules/"
 local localizationPath = resourcesPath .. "Localizations/"
 local localization = MineOSCore.getLocalization(localizationPath)
 
+
 -- print(MineOSCore.properties.language)
 -- local localizationFileName = localizationPath .. MineOSCore.properties.language .. ".lang"
 -- print(locatizationfileName)
 
 
-local mainContainer, window = MineOSInterface.addWindow(MineOSInterface.tabbedWindow(1,1,90,40))
+mainContainer, window = MineOSInterface.addWindow(MineOSInterface.tabbedWindow(1,1,90,40))
 
 ------
 
-window.contentContainer = window:addChild(GUI.container(1,4, window.width, window.height-3))
+--window.contentContainer = window:addChild(GUI.container(1,4, window.width, window.height-3))
+window.contentContainer = window:addChild(GUI.container(1,4, 1,1))
+
+dofile(resourcesPath .. "baselib.lua")
+
+activity(true)
 
 _G.BaseConfig = {}
 function saveConfig()
@@ -42,6 +48,8 @@ end
 function loadConfig()
   if fs.exists(resourcesPath .. "config") then
     _G.BaseConfig = table.fromFile(resourcesPath .. "config")
+  --else
+  --  saveConfig()
   end
 end
 
@@ -71,6 +79,7 @@ window.onResize = function(width, height)
   window.contentContainer.width = width
   window.contentContainer.height = window.backgroundPanel.height
 
+  activityWidget.localX = window.width - activityWidget.width
   window.tabBar:getItem(window.tabBar.selectedItem).onTouch()
 end
 --saveConfig()
@@ -172,4 +181,4 @@ end
 
 loadModules()
 window.onResize(90,40)
-
+--activity(false)
