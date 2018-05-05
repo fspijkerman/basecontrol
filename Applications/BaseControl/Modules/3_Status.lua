@@ -55,6 +55,17 @@ module.onTouch = function()
         local updateButton = menuContentContainer:addChild(GUI.button(math.floor(menuContentContainer.width/2-26/2),10,26,3,0x3366CC,0xFFFFFF,0xAAAAAA,0x000000,"Update Now"))
         updateButton.onTouch = function()
           activity(true)
+
+          -- Disable interface, .disabled = true not working.
+          for i = 1, menuList.itemSize do
+            menuList:getItem(i).onTouch = function() return end
+          end
+          menuList.select = function(object) return object end
+          for i = 1, window.tabBar.itemSize do
+            window.tabBar:getItem(i).onTouch = function() return end
+          end
+          window.tabBar.select = function(object) return object end
+
           updateButton:delete()
           local dlImg = image.load(resourcesPath .. "/../Icons/Downloading.pic")
           local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(dlImg)/2),2,dlImg))
