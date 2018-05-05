@@ -69,7 +69,7 @@ module.onTouch = function()
 
           updateButton:delete()
           local dlImg = image.load(resourcesPath .. "/../Icons/Downloading.pic")
-          local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(dlImg)/2),2,dlImg))
+          local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(dlImg)/2),3,dlImg))
 
           local progress = menuContentContainer:addChild(GUI.progressBar(math.floor(menuContentContainer.width/2-50/2),math.floor(menuContentContainer.height/2)+2,50,0x3392FF,0xBBBBBB,0x555555,0,true,false))
 
@@ -96,7 +96,7 @@ module.onTouch = function()
             progress:delete()
             updateLabel.text = "Update complete, please restart this app"
             local okImg = image.load(resourcesPath .. "/../Icons/OK.pic")
-            local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),1,okImg))
+            local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),3,okImg))
 
             menuContentContainer:draw()
             buffer.draw()
@@ -108,7 +108,7 @@ module.onTouch = function()
         updateLabel.text = "You are up to date, current version: " .. versionData.Version
 
         local okImg = image.load(resourcesPath .. "/../Icons/OK.pic")
-        local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),1,okImg))
+        local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),3,okImg))
       end
     end
     activity(false)
