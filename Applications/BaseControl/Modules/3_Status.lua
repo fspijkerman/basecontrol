@@ -14,6 +14,7 @@ local MineOSInterface = require("MineOSInterface")
 local unicode = require("unicode")
 local event = require("event")
 local fs = require("filesystem")
+local web = require("web")
 
 local resourcesPath = MineOSCore.getCurrentScriptDirectory()
 local module = {}
@@ -74,7 +75,8 @@ module.onTouch = function()
               progress.value = math.round(i/#filesData.duringInstall*100)
               menuContentContainer:draw()
               buffer.draw()
-              os.sleep(1)
+              --os.sleep(1)
+              web.download(filesData.duringInstall[i].url, filesData.duringInstall[i].path)
             end
 
             activity(false)

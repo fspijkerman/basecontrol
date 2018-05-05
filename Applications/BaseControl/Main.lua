@@ -126,14 +126,14 @@ end
 _G.craftTimer = event.timer(5, function()
   --log("Checking for craftable items")
   local tasks = rs.getTasks()
-  
+
   for i, stack in pairs(_G.BaseConfig) do
     local mod,item,damage = i:match("([^:]+):([^:]+):([^:]+)")
     local name = mod .. ":".. item
     local stack_item = {fullName=name, name=name, damage=tonumber(damage)}
     local toCraft = tonumber(stack.total)
     local skip=false
-    
+
     if (rs.hasPattern(stack_item)) then
       if (stack["idle"] == true) then
         -- check if RS is idle
@@ -142,7 +142,7 @@ _G.craftTimer = event.timer(5, function()
           skip=true
         end
       end
-      
+
       if (not craft_is_on_tasks(stack_item, tasks) and skip==false) then
         --log({text="Has Pattern: " .. tostring(i), color=0x008800})
         local rsStack = rs.getItem(stack_item, true)

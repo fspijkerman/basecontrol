@@ -25,7 +25,7 @@ module.onTouch = function()
   window.contentContainer:deleteChildren()
   local craftPanel = window.contentContainer:addChild(GUI.panel(1,1,1,1, 0xE1E1E1))
   local mainLayout = window.contentContainer:addChild(GUI.layout(1,1, window.contentContainer.width, window.contentContainer.height, 2, 1))
-  
+
   mainLayout:setColumnWidth(1, GUI.sizePolicies.percentage, 0.4)
   mainLayout:setColumnWidth(2, GUI.sizePolicies.percentage, 0.6)
   mainLayout:setCellFitting(1,1, true, true)
@@ -40,7 +40,7 @@ module.onTouch = function()
   treeLayout:setCellFitting(1,2, true, true)
   local tree = treeLayout:setCellPosition(1,1, treeLayout:addChild(GUI.tree(1,1,1,1, 0xE1E1E1, 0x3C3C3C, 0x3C3C3C, 0xAAAAAA, 0x3C3C3C, 0xFFFFFF,  0xBBBBBB, 0xAAAAAA, 0xC3C3C3, 0x444444, GUI.filesystemModes.both, GUI.filesystemModes.file)))
   local searchTree = treeLayout:setCellPosition(1,2, treeLayout:addChild(GUI.input(1,1,1,1, 0x444444, 0x666666, 0x888888, 0x444444, 0x262626, nil, "Search")))
-  
+
   searchTree.onInputFinished = function()
     tree.onItemExpanded()
   end
@@ -52,15 +52,15 @@ module.onTouch = function()
   itemsLayout:setCellFitting(1,1, true, false, 6,0)
   itemsLayout:setCellFitting(1,2, true, true)
 
-  
+
   local infoLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Nothing selected")):setAlignment(GUI.alignment.horizontal.center,GUI.alignment.vertical.bottom))
   local itemEnabled = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Enabled", false)))
   local totalCreate = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.input(1,1,1,3, 0xFFFFFF, 0x666666, 0x888888, 0xFFFFFF, 0x262626, nil, "Total")))
   local itemIdle    = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Only while Idle", false)))
-  
+
   --itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.input(1,1,1,3, 0xFFFFFF, 0x666666, 0x888888, 0xFFFFFF, 0x262626, nil, "Threshold")))
   local itemSubmit   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.button(1,1,1,1,0x3C3C3C, 0xFFFFFF, 0x0, 0xFFFFFF, "Save")))
-  
+
   local outputTextBox= itemsLayout:setCellPosition(1,2, itemsLayout:addChild(GUI.textBox(1,1,1,1, 0x000000, 0x888888,_G.logData, 1,1,0)))
 
   totalCreate.validator = function (text)
@@ -105,14 +105,14 @@ module.onTouch = function()
   tree.onItemExpanded = function()
     activity(true)
     tree.items = {}
-    
+
     local craftable = {}
 
     local patterns = rs.getPatterns()
     if patterns == nil then
       return
     end
-    
+
     for i,value in ipairs(patterns) do 
       local mod,item = value["name"]:match("([^:]+):([^:]+)")
       local label = value["label"] -- should be label! fix for now
@@ -190,7 +190,7 @@ module.onTouch = function()
   itemSubmit.onTouch = function()
     if itemEnabled.switch.state then
       _G.BaseConfig[infoLabel.text] = {total=totalCreate.text, idle=itemIdle.switch.state}
-     
+
       log({text="Saved Item " .. infoLabel.text .. " (" ..totalCreate.text .. ")", color = 0x008800})
       table.toFile(resourcesPath .. "/../config", _G.BaseConfig)
     else
