@@ -73,11 +73,21 @@ module.onTouch = function()
             for i = 1, #filesData.duringInstall do
               updateLabel.text = "Downloading " .. string.limit(filesData.duringInstall[i].path, 50 - 12 - 1, "center")
               progress.value = math.round(i/#filesData.duringInstall*100)
+              window:draw() -- for the activity spinner
               menuContentContainer:draw()
               buffer.draw()
               --os.sleep(1)
               web.download(filesData.duringInstall[i].url, filesData.duringInstall[i].path)
             end
+
+            img:delete()
+            progress:delete()
+            updateLabel.text = "Update complete, please restart this app"
+            local okImg = image.load(resourcesPath .. "/../Icons/OK.pic")
+            local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),1,okImg))
+
+            menuContentContainer:draw()
+            buffer.draw()
 
             activity(false)
           end
