@@ -7,7 +7,8 @@ local web = require("web")
 ---
 
 BaseSettings = {
-  VersionStamp = 12344,
+  Version      = "0.3-alpha",
+  VersionStamp = 12345,
   UpdateURL    = "https://raw.githubusercontent.com/fspijkerman/basecontrol/master/Version.cfg",
   FilesURL     = "https://raw.githubusercontent.com/fspijkerman/basecontrol/master/Files.cfg",
 }

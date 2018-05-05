@@ -28,7 +28,8 @@ module.onTouch = function()
 
   local function about()
     menuContentContainer:deleteChildren()
-    local test = menuContentContainer:addChild(GUI.text(3,2,0x000000, "Version 0.2-alpha"))
+    menuContentContainer:addChild(GUI.text(3,2,0x000000, "Current Version: " .. BaseSettings.Version))
+    menuContentContainer:addChild(GUI.text(3,3,0x000000, "Version timestamp: " .. BaseSettings.VersionStamp))
     MineOSInterface.mainContainer:drawOnScreen()
   end
 
@@ -51,7 +52,7 @@ module.onTouch = function()
       fs.remove("/tmp/version.cfg")
 
       if tonumber(versionData.VersionStamp) > BaseSettings.VersionStamp then
-        updateLabel.text = "New update available"
+        updateLabel.text = "New update available, " .. BaseSettings.Version .. " => " .. versionData.Version
         local updateButton = menuContentContainer:addChild(GUI.button(math.floor(menuContentContainer.width/2-26/2),10,26,3,0x3366CC,0xFFFFFF,0xAAAAAA,0x000000,"Update Now"))
         updateButton.onTouch = function()
           activity(true)
