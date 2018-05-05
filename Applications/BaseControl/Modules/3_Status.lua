@@ -9,23 +9,96 @@ local GUI = require("GUI")
 local buffer = require("doubleBuffering")
 local image = require("image")
 local MineOSPaths = require("MineOSPaths")
+local MineOSCore = require("MineOSCore")
 local MineOSInterface = require("MineOSInterface")
 local unicode = require("unicode")
 local event = require("event")
+local fs = require("filesystem")
 
+local resourcesPath = MineOSCore.getCurrentScriptDirectory()
 local module = {}
 module.name = "Status"
 
 module.onTouch = function()
   window.contentContainer:deleteChildren()
-  
+
   local menuList = window.contentContainer:addChild(GUI.list(1, 1, 23, window.contentContainer.height, 3, 0, 0xE1E1E1, 0x4B4B4B, 0xD2D2D2, 0x4B4B4B, 0x3366CC, 0xE1E1E1))
   local menuContentContainer = window.contentContainer:addChild(GUI.container(menuList.width + 1, 1, window.contentContainer.width - menuList.width, window.contentContainer.height))
 
-  menuList:addItem("About")
-  menuList:addItem("Settings")
-  menuList:addItem("Update")
-  local test = menuContentContainer:addChild(GUI.text(3,2,0x000000, "Version 0.1-alpha"))
+  local function about()
+    menuContentContainer:deleteChildren()
+    local test = menuContentContainer:addChild(GUI.text(3,2,0x000000, "Version 0.1-alpha"))
+    MineOSInterface.mainContainer:drawOnScreen()
+  end
+
+  local function settings()
+    menuContentContainer:deleteChildren()
+    local test = menuContentContainer:addChild(GUI.text(3,2,0x000000, "Settings"))
+    MineOSInterface.mainContainer:drawOnScreen()
+  end
+
+  local function update()
+    activity(true)
+    menuContentContainer:deleteChildren()
+
+    local updateLabel = menuContentContainer:addChild(GUI.label(1,1,menuContentContainer.width,menuContentContainer.height, 0x000000, "Checking for updates..."))
+    updateLabel:setAlignment(GUI.alignment.horizontal.center, GUI.alignment.vertical.center)
+    MineOSInterface.mainContainer:drawOnScreen()
+
+    if tryDownload(BaseSettings.UpdateURL, "/tmp/version.cfg") then
+      versionData = unserializeFile("/tmp/version.cfg")
+      fs.remove("/tmp/version.cfg")
+
+      if tonumber(versionData.VersionStamp) > BaseSettings.VersionStamp then
+        updateLabel.text = "New update available"
+        local updateButton = menuContentContainer:addChild(GUI.button(math.floor(menuContentContainer.width/2-26/2),10,26,3,0x3366CC,0xFFFFFF,0xAAAAAA,0x000000,"Update Now"))
+        updateButton.onTouch = function()
+          activity(true)
+          updateButton:delete()
+          local dlImg = image.load(resourcesPath .. "/../Icons/Downloading.pic")
+          local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(dlImg)/2),2,dlImg))
+
+          local progress = menuContentContainer:addChild(GUI.progressBar(math.floor(menuContentContainer.width/2-50/2),math.floor(menuContentContainer.height/2)+2,50,0x3392FF,0xBBBBBB,0x555555,0,true,false))
+
+          updateLabel.text = "Downloading file list..."
+          -- menuContentContainer:draw()
+          --buffer.draw()
+          MineOSInterface.mainContainer:drawOnScreen()
+
+          if tryDownload(BaseSettings.FilesURL, resourcesPath .. "../Files.cfg") then
+            filesData = unserializeFile(resourcesPath .. "../Files.cfg")
+            fs.remove(resourcesPath .. "../Files.cfg")
+
+            for i = 1, #filesData.duringInstall do
+              updateLabel.text = "Downloading " .. string.limit(filesData.duringInstall[i].path, 50 - 12 - 1, "center")
+              progress.value = math.round(i/#filesData.duringInstall*100)
+              menuContentContainer:draw()
+              buffer.draw()
+              os.sleep(1)
+            end
+
+            activity(false)
+          end
+        end
+      else
+        updateLabel.text = "You are up to date, current version: " .. versionData.Version
+
+        local okImg = image.load(resourcesPath .. "/../Icons/OK.pic")
+        local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),1,okImg))
+      end
+    end
+    activity(false)
+  end
+
+  menuList:addItem("About").onTouch = function()
+    about()
+  end
+
+  menuList:addItem("Settings").onTouch = function() settings() end
+  menuList:addItem("Update").onTouch = function() update() end
+
+  menuList:getItem(1).onTouch()
+
 end
 
 ----

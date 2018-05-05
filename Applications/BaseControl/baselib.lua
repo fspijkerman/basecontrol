@@ -1,7 +1,31 @@
 local GUI = require("GUI")
 local MineOSInterface = require("MineOSInterface")
 local buffer = require("doubleBuffering")
+local fs = require("filesystem")
+local web = require("web")
+
 ---
+
+BaseSettings = {
+  VersionStamp = 12344,
+  UpdateURL    = "https://raw.githubusercontent.com/fspijkerman/basecontrol/master/Version.cfg",
+  FilesURL     = "https://raw.githubusercontent.com/fspijkerman/basecontrol/master/Files.cfg",
+}
+
+function unserializeFile(path)
+  local file = io.open(path, "r")
+  local data = require("serialization").unserialize(file:read("*a"))
+  file:close()
+  return data
+end
+
+function tryDownload(...)
+  local success, reason = web.download(...)
+  if not success then
+    GUI.error(reason)
+  end
+  return success
+end
 
 activityWidget = window:addChild(GUI.object(window.width-4, 1, 4, 3))
 activityWidget.hidden = true
