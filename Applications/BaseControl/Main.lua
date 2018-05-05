@@ -117,7 +117,7 @@ local function craft_is_on_tasks(craft, tasks)
 end
 
 _G.logData = {}
-log("AutoCrafter v0.1-alpha")
+log("BaseControl v" .. BaseSettings.Version)
 
 -- Just to be sure
 if _G.craftTimer then
