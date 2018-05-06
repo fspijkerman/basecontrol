@@ -13,11 +13,11 @@ local MineOSPaths = require("MineOSPaths")
 local MineOSCore = require("MineOSCore")
 local MineOSInterface = require("MineOSInterface")
 local event = require("event")
-local rs = component.block_refinedstorage_cable
+
 
 ---
 
-local resourcesPath = MineOSCore.getCurrentScriptDirectory()
+resourcesPath = MineOSCore.getCurrentScriptDirectory()
 local modulesPath = resourcesPath .. "Modules/"
 local localizationPath = resourcesPath .. "Localizations/"
 local localization = MineOSCore.getLocalization(localizationPath)
@@ -38,20 +38,7 @@ window.contentContainer = window:addChild(GUI.container(1,4, 1,1))
 dofile(resourcesPath .. "baselib.lua")
 
 activity(true)
-
-_G.BaseConfig = {}
-function saveConfig()
-  table.toFile(resourcesPath .. "config", _G.BaseConfig)
-  return config
-end
-
-function loadConfig()
-  if fs.exists(resourcesPath .. "config") then
-    _G.BaseConfig = table.fromFile(resourcesPath .. "config")
-  --else
-  --  saveConfig()
-  end
-end
+local rs = getRS()
 
 local function loadModules()
   local fileList = fs.sortedList(modulesPath, "name", false)
@@ -85,13 +72,7 @@ end
 --saveConfig()
 loadConfig()
 
-function log(msg)
-  -- crude way to limit memory usage
-  if #_G.logData > 50 then
-    _G.logData = {}
-  end
-  table.insert(_G.logData, msg)
-end
+
 
 -- Check if a task have missing items.
 local function is_missing_items(task)
@@ -116,7 +97,7 @@ local function craft_is_on_tasks(craft, tasks)
   return false
 end
 
-_G.logData = {}
+
 log("BaseControl v" .. BaseSettings.Version)
 
 -- Just to be sure

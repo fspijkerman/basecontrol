@@ -12,7 +12,7 @@ local MineOSPaths = require("MineOSPaths")
 local MineOSInterface = require("MineOSInterface")
 local MineOSCore = require("MineOSCore")
 local unicode = require("unicode")
-local rs = component.block_refinedstorage_cable
+local rs = getRS()
 local event = require("event")
 
 --local resourcesPath = "/MineOS/Applications/BaseControl.app/" -- required for IDE
