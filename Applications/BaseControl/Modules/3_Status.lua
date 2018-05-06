@@ -35,7 +35,23 @@ module.onTouch = function()
 
   local function settings()
     menuContentContainer:deleteChildren()
-    local test = menuContentContainer:addChild(GUI.text(3,2,0x000000, "Settings"))
+
+    local formLayout = menuContentContainer:addChild(GUI.layout(3,2, menuContentContainer.width-4, menuContentContainer.height, 2,1))
+    formLayout.showGrid = false
+    formLayout:setCellAlignment(1,1, GUI.alignment.horizontal.left, GUI.alignment.vertical.top)
+    formLayout:setCellAlignment(2,1, GUI.alignment.horizontal.left, GUI.alignment.vertical.top)
+    formLayout:setColumnWidth(1, GUI.sizePolicies.percentage, 0.3)
+    formLayout:setColumnWidth(2, GUI.sizePolicies.percentage, 0.7)
+    formLayout:setCellFitting(1,1, true, false)
+
+    formLayout:setCellPosition(1, 1, formLayout:addChild(GUI.label(3,2,15,3,0x000000,"Refined Storage:"))):setAlignment(GUI.alignment.horizontal.left, GUI.alignment.vertical.center)
+    local comboDefaultRS = formLayout:setCellPosition(2, 1, formLayout:addChild(GUI.comboBox(3, 2, 35, 3, 0xFFFFFF, 0x2D2D2D, 0xCCCCCC, 0x888888)))
+
+    comboDefaultRS:addItem("Auto")
+    for _,name in pairs(BaseSettings.RS) do
+      comboDefaultRS:addItem(name)
+    end
+
     MineOSInterface.mainContainer:drawOnScreen()
   end
 
