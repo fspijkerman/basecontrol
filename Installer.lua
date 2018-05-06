@@ -200,14 +200,6 @@ local function addSwitchToStage(x, y, color, text, state)
 	return stageContainer:addChild(GUI.switch(x, y, 8, color, 0xAAAAAA, 0xFFFFFF, state))
 end
 
---stages[2] = function()
---	addButtonsToStage()
---	stageContainer:addChild(GUI.image(1, 1, images.OS))
---	local x = math.floor(stageContainer.width / 2)
---	stageContainer.downloadWallpapersSwitch = addSwitchToStage(x - 13, 22, 0xFF4940, localization.installWallpapers, true)
---	--stageContainer.flashEEPROMSwitch = addSwitchToStage(x + 6, 22, 0x3392FF, localization.flashEEPROM, true)
---end
-
 ------------------------------------------------------------------------------------------------------------------------------------
 
 stages[2] = function()
