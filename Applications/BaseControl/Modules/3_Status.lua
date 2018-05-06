@@ -89,7 +89,7 @@ module.onTouch = function()
               menuContentContainer:draw()
               buffer.draw()
               --os.sleep(1)
-              web.download(filesData.duringInstall[i].url .. "?random=" .. math.rand(10000,99999), filesData.duringInstall[i].path)
+              web.download(filesData.duringInstall[i].url, filesData.duringInstall[i].path)
             end
 
             img:delete()
