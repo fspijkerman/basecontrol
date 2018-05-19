@@ -38,13 +38,13 @@ module.onTouch = function()
 
     local formLayout = menuContentContainer:addChild(GUI.layout(3,2, menuContentContainer.width-4, menuContentContainer.height, 2,1))
     formLayout.showGrid = false
-    formLayout:setCellAlignment(1,1, GUI.alignment.horizontal.left, GUI.alignment.vertical.top)
-    formLayout:setCellAlignment(2,1, GUI.alignment.horizontal.left, GUI.alignment.vertical.top)
+    formLayout:setCellAlignment(1,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
+    formLayout:setCellAlignment(2,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
     formLayout:setColumnWidth(1, GUI.sizePolicies.percentage, 0.3)
     formLayout:setColumnWidth(2, GUI.sizePolicies.percentage, 0.7)
     formLayout:setCellFitting(1,1, true, false)
 
-    formLayout:setCellPosition(1, 1, formLayout:addChild(GUI.label(3,2,15,3,0x000000,"Refined Storage:"))):setAlignment(GUI.alignment.horizontal.left, GUI.alignment.vertical.center)
+    formLayout:setCellPosition(1, 1, formLayout:addChild(GUI.label(3,2,15,3,0x000000,"Refined Storage:"))):setAlignment(GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_CENTER)
     local comboDefaultRS = formLayout:setCellPosition(2, 1, formLayout:addChild(GUI.comboBox(3, 2, 35, 3, 0xFFFFFF, 0x2D2D2D, 0xCCCCCC, 0x888888)))
 
     comboDefaultRS:addItem("Auto")
@@ -60,7 +60,7 @@ module.onTouch = function()
     menuContentContainer:deleteChildren()
 
     local updateLabel = menuContentContainer:addChild(GUI.label(1,1,menuContentContainer.width,menuContentContainer.height, 0x000000, "Checking for updates..."))
-    updateLabel:setAlignment(GUI.alignment.horizontal.center, GUI.alignment.vertical.center)
+    updateLabel:setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER, GUI.ALIGNMENT_VERTICAL_CENTER)
     MineOSInterface.mainContainer:drawOnScreen()
 
     if tryDownload(BaseSettings.UpdateURL, "/tmp/version.cfg") then

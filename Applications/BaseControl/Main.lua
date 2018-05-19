@@ -28,7 +28,7 @@ local localization = MineOSCore.getLocalization(localizationPath)
 -- print(locatizationfileName)
 
 
-mainContainer, window = MineOSInterface.addWindow(MineOSInterface.tabbedWindow(1,1,90,40))
+mainContainer, window = MineOSInterface.addWindow(GUI.tabbedWindow(1,1,90,40))
 
 ------
 
