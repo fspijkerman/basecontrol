@@ -161,7 +161,7 @@ end
 
 function stages.load(stage)
 	stages.current = stage
-	stageContainer:deleteChildren(2)
+	stageContainer:deleteChildren(1)
 
 	stages[stage]()
 
