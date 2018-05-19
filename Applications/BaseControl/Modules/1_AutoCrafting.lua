@@ -22,7 +22,7 @@ module.name = "AutoCrafting"
 
 module.onTouch = function()
   activity(true)
-  window.contentContainer:deleteChildren()
+  window.contentContainer:removeChildren()
   local craftPanel = window.contentContainer:addChild(GUI.panel(1,1,1,1, 0xE1E1E1))
   local mainLayout = window.contentContainer:addChild(GUI.layout(1,1, window.contentContainer.width, window.contentContainer.height, 2, 1))
 

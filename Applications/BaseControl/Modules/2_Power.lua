@@ -17,7 +17,7 @@ local module = {}
 module.name = "Power"
 
 module.onTouch = function()
-  window.contentContainer:deleteChildren()
+  window.contentContainer:removeChildren()
   local craftPanel = window.contentContainer:addChild(GUI.panel(1,1,1,1, 0xE1E1E1))
   local chart = window.contentContainer:addChild(GUI.chart(1,1, window.contentContainer.width-2, 25, 0xEEEEEE, 0xAAAAAA, 0x888888, 0xFFDB40, 0.25, 0.25, "s","t", true, {}))
 

@@ -21,20 +21,20 @@ local module = {}
 module.name = "Status"
 
 module.onTouch = function()
-  window.contentContainer:deleteChildren()
+  window.contentContainer:removeChildren()
 
   local menuList = window.contentContainer:addChild(GUI.list(1, 1, 23, window.contentContainer.height, 3, 0, 0xE1E1E1, 0x4B4B4B, 0xD2D2D2, 0x4B4B4B, 0x3366CC, 0xE1E1E1))
   local menuContentContainer = window.contentContainer:addChild(GUI.container(menuList.width + 1, 1, window.contentContainer.width - menuList.width, window.contentContainer.height))
 
   local function about()
-    menuContentContainer:deleteChildren()
+    menuContentContainer:removeChildren()
     menuContentContainer:addChild(GUI.text(3,2,0x000000, "Current Version: " .. BaseSettings.Version))
     menuContentContainer:addChild(GUI.text(3,3,0x000000, "Version timestamp: " .. BaseSettings.VersionStamp))
     MineOSInterface.mainContainer:drawOnScreen()
   end
 
   local function settings()
-    menuContentContainer:deleteChildren()
+    menuContentContainer:removeChildren()
 
     local formLayout = menuContentContainer:addChild(GUI.layout(3,2, menuContentContainer.width-4, menuContentContainer.height, 2,1))
     formLayout.showGrid = false
@@ -57,7 +57,7 @@ module.onTouch = function()
 
   local function update()
     activity(true)
-    menuContentContainer:deleteChildren()
+    menuContentContainer:removeChildren()
 
     local updateLabel = menuContentContainer:addChild(GUI.label(1,1,menuContentContainer.width,menuContentContainer.height, 0x000000, "Checking for updates..."))
     updateLabel:setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER, GUI.ALIGNMENT_VERTICAL_CENTER)
