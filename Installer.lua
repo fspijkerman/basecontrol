@@ -204,7 +204,7 @@ end
 
 stages[2] = function()
 	addButtonsToStage()
-	stageContainer:addChild(GUI.textBox(1, 1, 90, 20, 0xFFFFFF, 0x444444, string.wrap(web.request(URLs.license .. MineOSCore.properties.language .. ".lang"), 88), 1, 1, 1))
+	stageContainer:addChild(GUI.textBox(1, 1, 90, 20, 0xFFFFFF, 0x444444, string.wrap(web.request(URLs.license), 88), 1, 1, 1))
 
 	stageContainer.nextStageButton.disabled = true
 	local switch = addSwitchToStage(41, 22, 0x666666, localization.terms, false)
