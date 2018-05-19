@@ -17,8 +17,8 @@ local args, options = shell.parse(...)
 
 local URLs = {
 	applicationList = "https://raw.githubusercontent.com/fspijkerman/basecontrol/master/Files.cfg",
-	installerLocalization = "https://raw.githubusercontent.com/IgorTimofeev/OpenComputers/master/Localizations/Installer/",
-	license = "https://raw.githubusercontent.com/IgorTimofeev/OpenComputers/master/License/",
+	installerLocalization = "https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Localizations/Installer/",
+	license = "https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/LICENSE",
 }
 
 ------------------------------------------------------------------------------------------------------------------------------------
