@@ -91,7 +91,7 @@ module.onTouch = function()
 
           updateLabel.text = "Downloading file list..."
           -- menuContentContainer:draw()
-          --buffer.draw()
+          --buffer.drawChanges()
           MineOSInterface.mainContainer:drawOnScreen()
 
           if tryDownload(BaseSettings.FilesURL, resourcesPath .. "../Files.cfg") then
@@ -103,7 +103,7 @@ module.onTouch = function()
               progress.value = math.round(i/#filesData.duringInstall*100)
               window:draw() -- for the activity spinner
               menuContentContainer:draw()
-              buffer.draw()
+              buffer.drawChanges()
               --os.sleep(1)
               web.download(filesData.duringInstall[i].url, filesData.duringInstall[i].path)
             end
@@ -115,7 +115,7 @@ module.onTouch = function()
             local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),3,okImg))
 
             menuContentContainer:draw()
-            buffer.draw()
+            buffer.drawChanges()
 
             activity(false)
           end

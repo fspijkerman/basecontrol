@@ -217,7 +217,7 @@ module.onTouch = function()
 
     tree.onItemExpanded()
     mainContainer:draw()
-    buffer.draw()
+    buffer.drawChanges()
   end
 
   itemEnabled.switch.disabled = true
