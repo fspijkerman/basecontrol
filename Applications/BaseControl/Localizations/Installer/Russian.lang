@@ -1,0 +1,9 @@
+{
+	fullInstallation = "Полная установка",
+	mustHaveInstallation = "Установка основных приложений",
+	installWallpapers = "Загрузить обои",
+	downloading = "Загрузка",
+	reboot = "Перезагрузить",
+	needToReboot = "Система установлена, наслаждайтесь",
+	terms = "Я принимаю условия соглашения",
+}

@@ -1,0 +1,9 @@
+{
+	fullInstallation = "Full installation",
+	mustHaveInstallation = "Install only must-have apps",
+	installWallpapers = "Download wallpapers",
+	downloading = "Downloading",
+	reboot = "Reboot",
+	needToReboot = "BaseControl has been successfully installed, enjoy",
+	terms = "I accept terms of the agreement",
+}
