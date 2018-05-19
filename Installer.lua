@@ -123,7 +123,7 @@ stageContainer:addChild(GUI.panel(1, 1, stageContainer.width, stageContainer.hei
 local overrideDraw = stageContainer.draw
 stageContainer.draw = function(...)
 	overrideDraw(...)
-	GUI.windowShadow(stageContainer.x, stageContainer.y, stageContainer.width, stageContainer.height, 0.5, true)
+	GUI.dropShadow(stageContainer.x, stageContainer.y, stageContainer.width, stageContainer.height, 0.5, true)
 end
 
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -161,12 +161,12 @@ end
 
 function stages.load(stage)
 	stages.current = stage
-	stageContainer:deleteChildren(1)
+	stageContainer:removeChildren(2)
 
 	stages[stage]()
 
 	mainContainer:draw()
-	buffer.draw()
+	buffer.drawChanges()
 end
 
 local function addImageToStage(y, picture)
@@ -211,7 +211,7 @@ stages[2] = function()
 	switch.onStateChanged = function()
 		stageContainer.nextStageButton.disabled = not switch.state
 		mainContainer:draw()
-		buffer.draw()
+		buffer.drawChanges()
 	end
 end
 
@@ -237,7 +237,7 @@ stages[3] = function()
 		progressBar.value = math.round(i / #applicationList.duringInstall * 100)
 
 		mainContainer:draw()
-		buffer.draw()
+		buffer.drawChanges()
 
 		web.download(applicationList.duringInstall[i].url, applicationList.duringInstall[i].path)
 		storeFileVersion(applicationList.duringInstall[i])
@@ -262,5 +262,5 @@ end
 
 stages.load(1)
 mainContainer:draw()
-buffer.draw(true)
+buffer.drawChanges(true)
 mainContainer:startEventHandling()
