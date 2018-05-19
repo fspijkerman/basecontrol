@@ -123,7 +123,7 @@ stageContainer:addChild(GUI.panel(1, 1, stageContainer.width, stageContainer.hei
 local overrideDraw = stageContainer.draw
 stageContainer.draw = function(...)
 	overrideDraw(...)
-	GUI.dropShadow(stageContainer.x, stageContainer.y, stageContainer.width, stageContainer.height, 0.5, true)
+	GUI.drawShadow(stageContainer.x, stageContainer.y, stageContainer.width, stageContainer.height, 0.5, true)
 end
 
 ------------------------------------------------------------------------------------------------------------------------------------
