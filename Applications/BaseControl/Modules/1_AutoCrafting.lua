@@ -197,6 +197,11 @@ module.onTouch = function()
     else
       totalCreate.disabled = true
       itemIdle.switch.disabled = true
+
+      -- Disable save button only if the item is not saved yet
+      if not _G.BaseConfig[infoLabel.text] then
+        itemSubmit.disabled = true
+      end
     end
   end
 
