@@ -21,6 +21,7 @@ module.onTouch = function()
   local craftPanel = window.contentContainer:addChild(GUI.panel(1,1,1,1, 0xE1E1E1))
   local chart = window.contentContainer:addChild(GUI.chart(1,1, window.contentContainer.width-2, 25, 0xEEEEEE, 0xAAAAAA, 0x888888, 0xFFDB40, 0.25, 0.25, "s","t", true, {}))
 
+  MineOSInterface.mainContainer:drawOnScreen()
   for i = 1, 100 do
     table.insert(chart.values, {i, math.random(0,80)})
   end

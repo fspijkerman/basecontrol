@@ -189,8 +189,8 @@ module.onTouch = function()
     activity(false)
   end
 
-  itemEnabled.switch.onStateChanged = function(mainContainer, switch, eventData, state)
-    if state == true then
+  itemEnabled.switch.onStateChanged = function(mainContainer, switch, state, eventData)
+    if switch.state == true then
       totalCreate.disabled = false
       itemIdle.switch.disabled = false
       itemSubmit.disabled = false
@@ -199,6 +199,7 @@ module.onTouch = function()
       itemIdle.switch.disabled = true
     end
   end
+
   itemSubmit.onTouch = function()
     if itemEnabled.switch.state then
       _G.BaseConfig[infoLabel.text] = {total=totalCreate.text, idle=itemIdle.switch.state}
