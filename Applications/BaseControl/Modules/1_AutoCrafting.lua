@@ -38,7 +38,7 @@ module.onTouch = function()
   treeLayout:setRowHeight(2, GUI.SIZE_POLICY_ABSOLUTE, 3)
   treeLayout:setFitting(1,1, true, true)
   treeLayout:setFitting(1,2, true, true)
-  local tree = treeLayout:setPosition(1,1, treeLayout:addChild(GUI.tree(1,1,1,1, 0xE1E1E1, 0x3C3C3C, 0x3C3C3C, 0xAAAAAA, 0x3C3C3C, 0xFFFFFF,  0xBBBBBB, 0xAAAAAA, 0xC3C3C3, 0x444444, GUI.filesystemModes.both, GUI.filesystemModes.file)))
+  local tree = treeLayout:setPosition(1,1, treeLayout:addChild(GUI.tree(1,1,1,1, 0xE1E1E1, 0x3C3C3C, 0x3C3C3C, 0xAAAAAA, 0x3C3C3C, 0xFFFFFF,  0xBBBBBB, 0xAAAAAA, 0xC3C3C3, 0x444444, GUI.IO_MODE_BOTH, GUI.IO_MODE_FILE)))
   local searchTree = treeLayout:setPosition(1,2, treeLayout:addChild(GUI.input(1,1,1,1, 0x444444, 0x666666, 0x888888, 0x444444, 0x262626, nil, "Search")))
 
   searchTree.onInputFinished = function()
