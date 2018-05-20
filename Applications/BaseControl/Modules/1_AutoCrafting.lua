@@ -28,40 +28,40 @@ module.onTouch = function()
 
   mainLayout:setColumnWidth(1, GUI.SIZE_POLICY_RELATIVE, 0.4)
   mainLayout:setColumnWidth(2, GUI.SIZE_POLICY_RELATIVE, 0.6)
-  mainLayout:setCellFitting(1,1, true, true)
-  mainLayout:setCellFitting(2,1, true, true)
+  mainLayout:setFitting(1,1, true, true)
+  mainLayout:setFitting(2,1, true, true)
 
   -- Tree
-  local treeLayout = mainLayout:setCellPosition(1,1, mainLayout:addChild(GUI.layout(1,1,1,1,1,2)))
+  local treeLayout = mainLayout:setPosition(1,1, mainLayout:addChild(GUI.layout(1,1,1,1,1,2)))
   treeLayout:setRowHeight(1, GUI.SIZE_POLICY_RELATIVE, 1.0) -- 0.6
   --treeLayout:setRowHeight(2, GUI.SIZE_POLICY_RELATIVE, 0.1)
   treeLayout:setRowHeight(2, GUI.SIZE_POLICY_ABSOLUTE, 3)
-  treeLayout:setCellFitting(1,1, true, true)
-  treeLayout:setCellFitting(1,2, true, true)
-  local tree = treeLayout:setCellPosition(1,1, treeLayout:addChild(GUI.tree(1,1,1,1, 0xE1E1E1, 0x3C3C3C, 0x3C3C3C, 0xAAAAAA, 0x3C3C3C, 0xFFFFFF,  0xBBBBBB, 0xAAAAAA, 0xC3C3C3, 0x444444, GUI.filesystemModes.both, GUI.filesystemModes.file)))
-  local searchTree = treeLayout:setCellPosition(1,2, treeLayout:addChild(GUI.input(1,1,1,1, 0x444444, 0x666666, 0x888888, 0x444444, 0x262626, nil, "Search")))
+  treeLayout:setFitting(1,1, true, true)
+  treeLayout:setFitting(1,2, true, true)
+  local tree = treeLayout:setPosition(1,1, treeLayout:addChild(GUI.tree(1,1,1,1, 0xE1E1E1, 0x3C3C3C, 0x3C3C3C, 0xAAAAAA, 0x3C3C3C, 0xFFFFFF,  0xBBBBBB, 0xAAAAAA, 0xC3C3C3, 0x444444, GUI.filesystemModes.both, GUI.filesystemModes.file)))
+  local searchTree = treeLayout:setPosition(1,2, treeLayout:addChild(GUI.input(1,1,1,1, 0x444444, 0x666666, 0x888888, 0x444444, 0x262626, nil, "Search")))
 
   searchTree.onInputFinished = function()
     tree.onItemExpanded()
   end
 
   -- Items
-  local itemsLayout = mainLayout:setCellPosition(2,1, mainLayout:addChild(GUI.layout(1,1,1,1,1,2)))
+  local itemsLayout = mainLayout:setPosition(2,1, mainLayout:addChild(GUI.layout(1,1,1,1,1,2)))
   itemsLayout:setRowHeight(1, GUI.SIZE_POLICY_RELATIVE, 0.6) -- 0.6
   itemsLayout:setRowHeight(2, GUI.SIZE_POLICY_RELATIVE, 0.4)
-  itemsLayout:setCellFitting(1,1, true, false, 6,0)
-  itemsLayout:setCellFitting(1,2, true, true)
-  local itemLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER,GUI.ALIGNMENT_VERTICAL_TOP))
-  local infoLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Nothing selected")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER,GUI.ALIGNMENT_VERTICAL_TOP))
-  local totalLabel  = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Available: 0")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_LEFT,ALIGNMENT_VERTICAL_BOTTOM))
-  local itemEnabled = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Enabled", false)))
-  local totalCreate = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.input(1,1,1,3, 0xFFFFFF, 0x666666, 0x888888, 0xFFFFFF, 0x262626, nil, "Total")))
-  local itemIdle    = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Only while Idle", false)))
+  itemsLayout:setFitting(1,1, true, false, 6,0)
+  itemsLayout:setFitting(1,2, true, true)
+  local itemLabel   = itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER,GUI.ALIGNMENT_VERTICAL_TOP))
+  local infoLabel   = itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Nothing selected")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER,GUI.ALIGNMENT_VERTICAL_TOP))
+  local totalLabel  = itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "Available: 0")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_LEFT,ALIGNMENT_VERTICAL_BOTTOM))
+  local itemEnabled = itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Enabled", false)))
+  local totalCreate = itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.input(1,1,1,3, 0xFFFFFF, 0x666666, 0x888888, 0xFFFFFF, 0x262626, nil, "Total")))
+  local itemIdle    = itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.switchAndLabel(2,2,25,8, 0x66DB80, 0x1D1D1D, 0x666666, 0x999999, "Only while Idle", false)))
 
-  --itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.input(1,1,1,3, 0xFFFFFF, 0x666666, 0x888888, 0xFFFFFF, 0x262626, nil, "Threshold")))
-  local itemSubmit   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.button(1,1,1,1,0x3C3C3C, 0xFFFFFF, 0x0, 0xFFFFFF, "Save")))
+  --itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.input(1,1,1,3, 0xFFFFFF, 0x666666, 0x888888, 0xFFFFFF, 0x262626, nil, "Threshold")))
+  local itemSubmit   = itemsLayout:setPosition(1,1, itemsLayout:addChild(GUI.button(1,1,1,1,0x3C3C3C, 0xFFFFFF, 0x0, 0xFFFFFF, "Save")))
 
-  local outputTextBox= itemsLayout:setCellPosition(1,2, itemsLayout:addChild(GUI.textBox(1,1,1,1, 0x000000, 0x888888,_G.logData, 1,1,0)))
+  local outputTextBox= itemsLayout:setPosition(1,2, itemsLayout:addChild(GUI.textBox(1,1,1,1, 0x000000, 0x888888,_G.logData, 1,1,0)))
 
   totalCreate.validator = function (text)
     return tonumber(text) ~= nil

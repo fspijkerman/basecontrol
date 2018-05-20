@@ -38,14 +38,14 @@ module.onTouch = function()
 
     local formLayout = menuContentContainer:addChild(GUI.layout(3,2, menuContentContainer.width-4, menuContentContainer.height, 2,1))
     formLayout.showGrid = false
-    formLayout:setCellAlignment(1,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
-    formLayout:setCellAlignment(2,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
+    formLayout:setAlignment(1,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
+    formLayout:setAlignment(2,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
     formLayout:setColumnWidth(1, GUI.SIZE_POLICY_RELATIVE, 0.3)
     formLayout:setColumnWidth(2, GUI.SIZE_POLICY_RELATIVE, 0.7)
-    formLayout:setCellFitting(1,1, true, false)
+    formLayout:setFitting(1,1, true, false)
 
-    formLayout:setCellPosition(1, 1, formLayout:addChild(GUI.label(3,2,15,3,0x000000,"Refined Storage:"))):setAlignment(GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_CENTER)
-    local comboDefaultRS = formLayout:setCellPosition(2, 1, formLayout:addChild(GUI.comboBox(3, 2, 35, 3, 0xFFFFFF, 0x2D2D2D, 0xCCCCCC, 0x888888)))
+    formLayout:setPosition(1, 1, formLayout:addChild(GUI.label(3,2,15,3,0x000000,"Refined Storage:"))):setAlignment(GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_CENTER)
+    local comboDefaultRS = formLayout:setPosition(2, 1, formLayout:addChild(GUI.comboBox(3, 2, 35, 3, 0xFFFFFF, 0x2D2D2D, 0xCCCCCC, 0x888888)))
 
     comboDefaultRS:addItem("Auto")
     for _,name in pairs(BaseSettings.RS) do
