@@ -26,16 +26,16 @@ module.onTouch = function()
   local craftPanel = window.contentContainer:addChild(GUI.panel(1,1,1,1, 0xE1E1E1))
   local mainLayout = window.contentContainer:addChild(GUI.layout(1,1, window.contentContainer.width, window.contentContainer.height, 2, 1))
 
-  mainLayout:setColumnWidth(1, GUI.sizePolicies.percentage, 0.4)
-  mainLayout:setColumnWidth(2, GUI.sizePolicies.percentage, 0.6)
+  mainLayout:setColumnWidth(1, GUI.SIZE_POLICY_RELATIVE, 0.4)
+  mainLayout:setColumnWidth(2, GUI.SIZE_POLICY_RELATIVE, 0.6)
   mainLayout:setCellFitting(1,1, true, true)
   mainLayout:setCellFitting(2,1, true, true)
 
   -- Tree
   local treeLayout = mainLayout:setCellPosition(1,1, mainLayout:addChild(GUI.layout(1,1,1,1,1,2)))
-  treeLayout:setRowHeight(1, GUI.sizePolicies.percentage, 1.0) -- 0.6
-  --treeLayout:setRowHeight(2, GUI.sizePolicies.percentage, 0.1)
-  treeLayout:setRowHeight(2, GUI.sizePolicies.absolute, 3)
+  treeLayout:setRowHeight(1, GUI.SIZE_POLICY_RELATIVE, 1.0) -- 0.6
+  --treeLayout:setRowHeight(2, GUI.SIZE_POLICY_RELATIVE, 0.1)
+  treeLayout:setRowHeight(2, GUI.SIZE_POLICY_ABSOLUTE, 3)
   treeLayout:setCellFitting(1,1, true, true)
   treeLayout:setCellFitting(1,2, true, true)
   local tree = treeLayout:setCellPosition(1,1, treeLayout:addChild(GUI.tree(1,1,1,1, 0xE1E1E1, 0x3C3C3C, 0x3C3C3C, 0xAAAAAA, 0x3C3C3C, 0xFFFFFF,  0xBBBBBB, 0xAAAAAA, 0xC3C3C3, 0x444444, GUI.filesystemModes.both, GUI.filesystemModes.file)))
@@ -47,8 +47,8 @@ module.onTouch = function()
 
   -- Items
   local itemsLayout = mainLayout:setCellPosition(2,1, mainLayout:addChild(GUI.layout(1,1,1,1,1,2)))
-  itemsLayout:setRowHeight(1, GUI.sizePolicies.percentage, 0.6) -- 0.6
-  itemsLayout:setRowHeight(2, GUI.sizePolicies.percentage, 0.4)
+  itemsLayout:setRowHeight(1, GUI.SIZE_POLICY_RELATIVE, 0.6) -- 0.6
+  itemsLayout:setRowHeight(2, GUI.SIZE_POLICY_RELATIVE, 0.4)
   itemsLayout:setCellFitting(1,1, true, false, 6,0)
   itemsLayout:setCellFitting(1,2, true, true)
   local itemLabel   = itemsLayout:setCellPosition(1,1, itemsLayout:addChild(GUI.label(1,1,1,1, 0x3C3C3C, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER,GUI.ALIGNMENT_VERTICAL_TOP))

@@ -40,8 +40,8 @@ module.onTouch = function()
     formLayout.showGrid = false
     formLayout:setCellAlignment(1,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
     formLayout:setCellAlignment(2,1, GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_TOP)
-    formLayout:setColumnWidth(1, GUI.sizePolicies.percentage, 0.3)
-    formLayout:setColumnWidth(2, GUI.sizePolicies.percentage, 0.7)
+    formLayout:setColumnWidth(1, GUI.SIZE_POLICY_RELATIVE, 0.3)
+    formLayout:setColumnWidth(2, GUI.SIZE_POLICY_RELATIVE, 0.7)
     formLayout:setCellFitting(1,1, true, false)
 
     formLayout:setCellPosition(1, 1, formLayout:addChild(GUI.label(3,2,15,3,0x000000,"Refined Storage:"))):setAlignment(GUI.ALIGNMENT_HORIZONTAL_LEFT, GUI.ALIGNMENT_VERTICAL_CENTER)
