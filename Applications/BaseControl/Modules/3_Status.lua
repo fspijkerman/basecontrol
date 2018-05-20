@@ -83,7 +83,7 @@ module.onTouch = function()
           end
           window.tabBar.select = function(object) return object end
 
-          updateButton:delete()
+          updateButton:remove()
           local dlImg = image.load(resourcesPath .. "/../Icons/Downloading.pic")
           local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(dlImg)/2),2,dlImg))
 
@@ -108,8 +108,8 @@ module.onTouch = function()
               web.download(filesData.duringInstall[i].url, filesData.duringInstall[i].path)
             end
 
-            img:delete()
-            progress:delete()
+            img:remove()
+            progress:remove()
             updateLabel.text = "Update complete, please restart this app"
             local okImg = image.load(resourcesPath .. "/../Icons/OK.pic")
             local img = menuContentContainer:addChild(GUI.image(math.floor(menuContentContainer.width/2 - image.getWidth(okImg)/2),3,okImg))
